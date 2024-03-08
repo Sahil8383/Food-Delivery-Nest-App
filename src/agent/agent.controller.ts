@@ -19,4 +19,8 @@ export class AgentController {
         return this.agentService.create(createAgentDto);
     }
 
+    @Get('closest')
+    async findClosestAgent(@Body() location: any) {
+        return this.agentService.findClosestAgent(location);
+    }
 }
