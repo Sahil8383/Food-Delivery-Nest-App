@@ -11,6 +11,6 @@ export class Agent {
     @Column({ type: 'point', nullable: true })
     location: string;
 
-    @Column()
+    @Column({ default: false })
     assigned: boolean;
 }

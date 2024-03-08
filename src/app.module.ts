@@ -8,6 +8,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { RestaurantModule } from './restaurant/restaurant.module';
+import { AgentModule } from './agent/agent.module';
 import * as redisStore from 'cache-manager-redis-store';
 
 @Module({
@@ -16,9 +17,9 @@ import * as redisStore from 'cache-manager-redis-store';
 
     CacheModule.register({
       isGlobal: true,
-      store: redisStore,
-      host: process.env.REDIS_HOST,
-      port: process.env.REDIS_PORT,
+      // store: redisStore,
+      // host: process.env.REDIS_HOST,
+      // port: process.env.REDIS_PORT,
     }),
 
     TypeOrmModule.forRootAsync({
@@ -34,7 +35,7 @@ import * as redisStore from 'cache-manager-redis-store';
 
     EventEmitterModule.forRoot(),
     UserModule, 
-    AuthModule, EmailModule, CloudinaryModule, RestaurantModule
+    AuthModule, EmailModule, CloudinaryModule, RestaurantModule, AgentModule
   ],
 })
 export class AppModule {}

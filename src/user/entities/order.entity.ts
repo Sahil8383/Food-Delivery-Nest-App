@@ -1,5 +1,5 @@
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Agent } from "./agent.entity";
+import { Agent } from "../../agent/entities/agent.entity";
 
 @Entity()
 export class Order {
