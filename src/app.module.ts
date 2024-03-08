@@ -7,6 +7,7 @@ import { EmailModule } from './email/email.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { CacheModule } from '@nestjs/cache-manager';
+import { RestaurantModule } from './restaurant/restaurant.module';
 import * as redisStore from 'cache-manager-redis-store';
 
 @Module({
@@ -33,7 +34,7 @@ import * as redisStore from 'cache-manager-redis-store';
 
     EventEmitterModule.forRoot(),
     UserModule, 
-    AuthModule, EmailModule, CloudinaryModule
+    AuthModule, EmailModule, CloudinaryModule, RestaurantModule
   ],
 })
 export class AppModule {}
