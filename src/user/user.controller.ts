@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req, UseI
 import { UserService } from './user.service';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { CacheInterceptor, CacheKey, CacheTTL } from '@nestjs/cache-manager';
+import { CreateOrderDto } from './dto/create-order.dto';
 
 @Controller('user')
 export class UserController {
@@ -20,6 +21,12 @@ export class UserController {
   // @UseGuards(AuthGuard)
   profile(@Req() req: any) {
     return this.userService.profile(req.user.id);
+  }
+
+  @Post('order')
+  @UseGuards(AuthGuard)
+  createOrder(@Body() createOrderDto: CreateOrderDto, @Req() req: any) {
+    return this.userService.createOrder(createOrderDto, req.user.id);
   }
 
 }

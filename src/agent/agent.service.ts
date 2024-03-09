@@ -29,7 +29,7 @@ export class AgentService {
         let minDistance = Number.MAX_VALUE;
 
         for (const agent of agents) {
-            const distance = this.haversineDistance(location.location.coordinates, agent.location.coordinates);
+            const distance = this.haversineDistance(location.coordinates, agent.location.coordinates);
             if (distance < minDistance) {
                 minDistance = distance;
                 closestAgent = agent;
