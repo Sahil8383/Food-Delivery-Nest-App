@@ -29,7 +29,7 @@ export class AgentService {
         let minDistance = Number.MAX_VALUE;
 
         for (const agent of agents) {
-            const distance = this.haversineDistance(location.location, agent.location);
+            const distance = this.haversineDistance(location.location.coordinates, agent.location.coordinates);
             if (distance < minDistance) {
                 minDistance = distance;
                 closestAgent = agent;
@@ -41,12 +41,12 @@ export class AgentService {
 
     private haversineDistance(coord1: any, coord2: any): number {
         const R = 6371;
-        const dLat = this.deg2rad(coord2.x - coord1.x);
-        const dLon = this.deg2rad(coord2.y - coord1.y);
+        const dLat = this.deg2rad(coord2[0] - coord1[0]);
+        const dLon = this.deg2rad(coord2[1] - coord1[1]);
 
         const a =
             Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(this.deg2rad(coord1.x)) * Math.cos(this.deg2rad(coord2.x)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            Math.cos(this.deg2rad(coord1[0])) * Math.cos(this.deg2rad(coord2[0])) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
 
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 

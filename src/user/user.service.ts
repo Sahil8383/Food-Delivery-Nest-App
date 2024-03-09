@@ -25,7 +25,7 @@ export class UserService {
 
   findAll() {
     return this.userRepository.find({
-      relations: ['posts'],
+      relations: ['orders']
     })
   }
 
@@ -38,7 +38,7 @@ export class UserService {
   async profile(id: string) {
     const user = await this.userRepository.findOne({
       where: { id },
-      relations: ['posts'],
+      relations: ['orders'],
     });
 
     return {

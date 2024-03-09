@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, Index } from "typeorm";
+import { Point } from "geojson";
 
 @Entity()
 export class Agent {
@@ -7,9 +8,10 @@ export class Agent {
 
     @Column({ unique: true })
     name: string;
-
-    @Column({ type: 'point', nullable: true })
-    location: string;
+    
+    @Index({ spatial: true })
+    @Column('geography', { spatialFeatureType: 'Point', nullable: true, srid: 4326 })
+    location: Point;
 
     @Column({ default: false })
     assigned: boolean;

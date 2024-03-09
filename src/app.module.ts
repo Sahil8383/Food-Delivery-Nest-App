@@ -30,6 +30,9 @@ import * as redisStore from 'cache-manager-redis-store';
         synchronize: true,
         autoLoadEntities: true,
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        extra: {
+          "extensions": ["postgis"]
+        },
       }),
     }),
 

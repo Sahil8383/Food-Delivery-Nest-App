@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Order } from "./order.entity";
+import { Point } from "geojson";
 
 @Entity()
 export class User {
@@ -18,9 +19,9 @@ export class User {
     @Column({ nullable: true })
     avatar: string;
 
-    @OneToMany(() => Order, order => order.id)
+    @OneToMany(() => Order, order => order.user)
     orders: Order[];
 
-    @Column({ type: 'point', nullable: true })
-    location: string;
+    @Column('geography', { spatialFeatureType: 'Point', nullable: true, srid: 4326 })
+    location: Point;
 }

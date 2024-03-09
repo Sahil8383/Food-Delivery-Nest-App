@@ -1,5 +1,5 @@
 export class CreateAgentDto {
     name: string;
-    location: string;
+    location: object;
     assigned: boolean;
 }
