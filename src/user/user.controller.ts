@@ -18,7 +18,7 @@ export class UserController {
   @CacheKey('profile')
   @CacheTTL(10)
   @Get('profile')
-  // @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard)
   profile(@Req() req: any) {
     return this.userService.profile(req.user.id);
   }

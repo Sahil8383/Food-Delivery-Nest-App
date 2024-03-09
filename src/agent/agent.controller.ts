@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UseInterceptors } from '@nestjs/common';
 import { AgentService } from './agent.service';
 import { CreateAgentDto } from './dto/create-agent.dto';
+import { CacheInterceptor, CacheKey, CacheTTL } from '@nestjs/cache-manager';
 
 @Controller('agent')
 export class AgentController {
@@ -9,6 +10,9 @@ export class AgentController {
         private readonly agentService: AgentService
     ) {}
 
+    @UseInterceptors(CacheInterceptor)
+    @CacheKey('agents')
+    @CacheTTL(30)
     @Get('all')
     findAll() {
         return this.agentService.findAll();
