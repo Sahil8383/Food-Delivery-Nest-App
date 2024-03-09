@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Menu } from "./menu.entity";
+import { Point } from "geojson";
 
 @Entity()
 export class Restaurant {
@@ -9,12 +10,12 @@ export class Restaurant {
     @Column({ unique: true })
     name: string;
 
-    @Column({ type: 'point', nullable: true })
-    location: string;
+    @Column('geography', { spatialFeatureType: 'Point', nullable: true, srid: 4326 })
+    location: Point;
 
     @Column()
     phone: string;
 
-    @OneToMany(() => Menu, menu => menu.id)
+    @OneToMany(() => Menu, menu => menu.restaurant)
     menu: Menu[];
 }

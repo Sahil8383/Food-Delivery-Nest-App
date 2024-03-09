@@ -1,4 +1,5 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Restaurant } from './restaurant.entity';
 
 @Entity()
 export class Menu {
@@ -8,9 +9,12 @@ export class Menu {
     @Column()
     name: string;
 
-    @Column()
-    price: number;
+    @Column({ type: 'float'})
+    price: string;
 
     @Column()
     description: string;
+
+    @ManyToOne(() => Restaurant, restaurant => restaurant.menu)
+    restaurant: string;
 }
