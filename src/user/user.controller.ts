@@ -24,7 +24,7 @@ export class UserController {
   }
 
   @Post('order')
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   createOrder(@Body() createOrderDto: CreateOrderDto, @Req() req: any) {
     return this.userService.createOrder(createOrderDto, req.user.id);
   }
