@@ -15,7 +15,7 @@ export class UserController {
   }
 
   @UseInterceptors(CacheInterceptor)
-  @CacheKey('profile')
+  @CacheKey('profile-${req.user.id}')
   @CacheTTL(10)
   @Get('profile')
   @UseGuards(AuthGuard)

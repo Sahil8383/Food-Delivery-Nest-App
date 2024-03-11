@@ -42,6 +42,11 @@ export class UserService {
   }
 
   async profile(id: string) {
+
+    const profile = await this.cacheManager.get(`profile-${id}`);
+    if (profile) {
+      return profile;
+    }
     const user = await this.userRepository.findOne({
       where: { id },
       relations: ['orders'],
